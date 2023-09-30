@@ -1,0 +1,10 @@
+import  express  from "express";
+import { verifyToken,verifyTokenAndAdmin,verifyTokenAndAuthorization } from "../middlewares/verifyAuth.js";
+import {create_cart,update_cart,delete_cart,getallcart,getonecart} from "../controller/cartcontrol.js";
+const router=express.Router();
+router.post("/create",verifyToken,create_cart);
+router.put("/updatecart/:id",verifyTokenAndAuthorization,update_cart);
+router.delete("/deletecart/:id",verifyTokenAndAuthorization,delete_cart);
+router.get("/",verifyTokenAndAdmin,getallcart);
+router.get("/getcart/:id",verifyTokenAndAuthorization,getonecart);
+export default router;
